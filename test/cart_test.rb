@@ -13,10 +13,10 @@ class CartTest < Minitest::Test
     cart.add_line_item(line_item1)
     cart.add_line_item(line_item2)
     cart.add_line_item(line_item3)
+    assert_equal 3, cart.line_items.size
 
     cart.refresh
-
-    assert_equal 3, cart.line_items.size
+    byebug
     assert_equal 1.50, cart.sales_taxes
     assert_equal 42.32, cart.total
   end
