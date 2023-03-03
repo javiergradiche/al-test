@@ -4,7 +4,6 @@ require './lib/line_item.rb'
 
 class LineItemTest < Minitest::Test
   def test_instance
-
     line_item = LineItem.new(
       {quantity: 2, is_imported: false, name: 'book', price_unit: 12.49 }
     )

@@ -39,6 +39,7 @@ class TaxCalculatorTest < Minitest::Test
       {quantity: 1, is_imported: true, name: 'bottle of perfume ', price_unit: 47.50 }
     )
     line_item.calculate_taxes
+
     assert_equal 54.65, line_item.subtotal_with_taxes
     assert_equal 4.75, line_item.tax_sale
     assert_equal 2.40, line_item.tax_duty

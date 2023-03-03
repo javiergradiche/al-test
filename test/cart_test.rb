@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/line_item.rb'
-require './lib/cart.rb'
+require './lib/models/line_item.rb'
+require './lib/models/cart.rb'
 
 class CartTest < Minitest::Test
   def test_sale_taxes_with_exception_without_import

@@ -7,8 +7,6 @@ class LineItem
                 :subtotal_without_taxes, :subtotal_with_taxes,
                 :tax_sale, :tax_duty
 
-
-
   def initialize(options)
     self.quantity = options[:quantity] || 1
     self.is_imported = options[:is_imported] || false
@@ -17,5 +15,8 @@ class LineItem
     self.subtotal_without_taxes = self.quantity * self.price_unit
   end
 
+  def refresh_taxes
+    calculate_taxes
+  end
 
 end

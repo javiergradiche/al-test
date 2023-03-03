@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/parser.rb'
+require './lib/services/parser.rb'
 
 class ParserTest < Minitest::Test
   def test_parse_withour_imported

@@ -1,7 +1,6 @@
 require 'byebug'
 
 module TaxCalculator
-
   # Exception: 0%, [books, food, and medical products]
   TAX_EXCEPTION_KEYS = %w[book chocolate pills].freeze
 
@@ -24,7 +23,7 @@ module TaxCalculator
 
   def add_tax_duty
     self.tax_duty = self.is_imported ?
-      round_zero_or_five((self.subtotal_without_taxes + self.tax_sale) * TAX_DUTY) :
+      round_zero_or_five(self.subtotal_without_taxes  * TAX_DUTY) :
       0
   end
 
