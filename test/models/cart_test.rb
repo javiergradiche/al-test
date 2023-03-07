@@ -11,7 +11,7 @@ class CartTest < Minitest::Test
     line_item3 = LineItem.new({quantity: 1, is_imported: false, name: 'chocolate', price_unit: 12.49 })
 
     parser = Parser.new
-    cart = Cart.new(parser)
+    cart = Cart.new
 
     cart.add_line_item(line_item1)
     cart.add_line_item(line_item2)
@@ -22,10 +22,10 @@ class CartTest < Minitest::Test
 
   def test_add_line_item_from_str
     parser = Parser.new
-    cart = Cart.new(parser)
+    cart = Cart.new
 
     assert_equal 0, cart.count
-    cart.add_line_item_from_str('2 book at 12.49')
+    cart.add_line_item_from_str('2 book at 12.49', parser)
     assert_equal 1, cart.count
   end
 end
