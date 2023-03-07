@@ -1,22 +1,16 @@
 #!/usr/bin/env ruby
 require './lib/models/cart.rb'
-require './lib/models/line_item.rb'
 require './lib/services/parser.rb'
 
 def create_cart_from_file(filename)
-  cart = Cart.new
   parser = Parser.new
+  cart = Cart.new parser
 
   begin
     File.foreach(filename) do |str_line|
-      values = parser.parse_line str_line
-      line_item = LineItem.new values
-      cart.add_line_item line_item
+      cart.add_line_item_from_str str_line
     end
-
-    cart.complete
     cart
-
   rescue SystemCallError => e
     $stderr.puts "Error trying to read the file: #{e}"
     exit -1

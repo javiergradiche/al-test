@@ -12,5 +12,4 @@ class Parser
     li.name = str_wo_quantity.split(' at')[0]
     li
   end
-
 end
