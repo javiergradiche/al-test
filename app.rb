@@ -7,20 +7,26 @@ def create_cart_from_file(filename)
   cart = Cart.new
   parser = Parser.new
 
-  File.open(filename, "r").each_line do |str_line|
-    values = parser.parse_line str_line
-    line_item = LineItem.new values
-    cart.add_line_item line_item
-  end
+  begin
+    File.foreach(filename) do |str_line|
+      values = parser.parse_line str_line
+      line_item = LineItem.new values
+      cart.add_line_item line_item
+    end
 
-  cart.complete
-  cart
+    cart.complete
+    cart
+
+  rescue SystemCallError => e
+    $stderr.puts "Error trying to read the file: #{e}"
+    exit -1
+  end
 end
 
 
 if ARGV.length != 1
-    puts "Please add the name of the input file."
-    exit;
+  puts "Please add the name of the input file."
+  exit;
 end
 
 filename = ARGV[0]
