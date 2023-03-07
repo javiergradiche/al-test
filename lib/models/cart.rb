@@ -1,11 +1,10 @@
 require './lib/models/line_item.rb'
 
 class Cart
-  def initialize(parser)
+  def initialize
     @line_items = []
     @sales_taxes = 0
     @toal = 0
-    @parser = parser
   end
 
   def add_line_item(item)
@@ -13,8 +12,8 @@ class Cart
     calculate_totals
   end
 
-  def add_line_item_from_str(str_line_item)
-    values = @parser.parse_line str_line_item
+  def add_line_item_from_str(str_line_item, parser)
+    values = parser.parse_line str_line_item
     line_item = LineItem.new values
     add_line_item line_item
   end

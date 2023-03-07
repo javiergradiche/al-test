@@ -4,11 +4,11 @@ require './lib/services/parser.rb'
 
 def create_cart_from_file(filename)
   parser = Parser.new
-  cart = Cart.new parser
+  cart = Cart.new
 
   begin
     File.foreach(filename) do |str_line|
-      cart.add_line_item_from_str str_line
+      cart.add_line_item_from_str(str_line, parser)
     end
     cart
   rescue SystemCallError => e
