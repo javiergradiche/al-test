@@ -1,17 +1,17 @@
-require 'byebug'
+require 'bigdecimal/util'
 
 module TaxCalculator
   # Exception: 0%, [books, food, and medical products]
   TAX_EXCEPTION_KEYS = %w[book chocolate pills].freeze
 
-  TAX_SALES = 0.10
-  TAX_DUTY = 0.05
-  ROUND_DEC = 1 / TAX_DUTY
+  TAX_SALES = 0.10.to_d
+  TAX_DUTY = 0.05.to_d
+  ROUND_DEC = 1.0.to_d / TAX_DUTY
 
   def calculate_taxes
     add_tax_sale
     add_tax_duty
-    self.subtotal_with_taxes = (self.subtotal_without_taxes + self.tax_sale + self.tax_duty).truncate(2)
+    self.subtotal_with_taxes = (self.subtotal_without_taxes + self.tax_sale + self.tax_duty).to_d
   end
 
   def add_tax_sale
@@ -28,7 +28,7 @@ module TaxCalculator
   end
 
   def round_zero_or_five(dec)
-    (dec * ROUND_DEC).ceil / ROUND_DEC
+    ((dec * ROUND_DEC).ceil / ROUND_DEC).to_d
   end
 
 end

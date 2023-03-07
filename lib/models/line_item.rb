@@ -1,3 +1,4 @@
+require 'bigdecimal/util'
 require './lib/services/tax_calculator.rb'
 
 class LineItem
@@ -11,7 +12,7 @@ class LineItem
     self.quantity = options[:quantity] || 1
     self.is_imported = options[:is_imported] || false
     self.name = options[:name] || 'No Name'
-    self.price_unit = options[:price_unit] || 0.0
+    self.price_unit = options[:price_unit].to_d || BigDecimal(0)
     self.subtotal_without_taxes = self.quantity * self.price_unit
   end
 
