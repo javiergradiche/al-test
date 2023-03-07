@@ -4,10 +4,9 @@ require './lib/services/tax_calculator.rb'
 class LineItem
   include TaxCalculator
 
-  # attr_reader :subtotal_with_taxes, :tax_sale, :tax_duty
-  attr_accessor :quantity, :is_imported, :name, :price_unit,
-                :subtotal_without_taxes, :subtotal_with_taxes,
-                :tax_sale, :tax_duty
+  attr_reader :quantity, :is_imported, :name, :price_unit,
+                :subtotal_without_taxes
+  attr_accessor :tax_sale, :tax_duty, :subtotal_with_taxes
 
   def initialize(options)
     @quantity = options[:quantity] || 1
